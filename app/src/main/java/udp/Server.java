@@ -51,22 +51,4 @@ public class Server {
             }
         }
     }
-
-
-    public static Map<Integer, Boolean> scanUDPPorts(int startPort, int endPort) {
-        Map<Integer, Boolean> portStatus = new HashMap<>();
-
-        for (int port = startPort; port <= endPort; port++) {
-            try {
-                DatagramSocket testSocket = new DatagramSocket(port);
-
-                portStatus.put(port, false);
-                testSocket.close();
-            } catch (SocketException e) {
-                portStatus.put(port, true);
-            }
-        }
-
-        return portStatus;
-    }
 }
