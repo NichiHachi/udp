@@ -34,10 +34,29 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = 'udp.App'
+    mainClass = 'udp.Server'
 }
 
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+
+
+tasks.register('runServer', JavaExec) {
+    group = 'application'
+    description = 'Lance le serveur UDP'
+    mainClass = 'udp.Server'
+    classpath = sourceSets.main.runtimeClasspath
+    args = []
+}
+
+tasks.register('runClient', JavaExec) {
+    group = 'application'
+    description = 'Lance le client UDP'
+    mainClass = 'udp.Client'
+    classpath = sourceSets.main.runtimeClasspath
+    args = []
+    standardInput = System.in 
+
 }
